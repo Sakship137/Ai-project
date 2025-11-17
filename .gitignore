@@ -50,7 +50,6 @@ logs/
 # Model files
 *.pt
 *.pth
-models/
 
 # Temporary files
 temp/
