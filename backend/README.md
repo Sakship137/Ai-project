@@ -1,6 +1,5 @@
 # Smart Diet Recommender - Backend API
 
-## Team Member 3 
 This is the FastAPI backend that connects the ML model with the frontend, handling image uploads, food detection, calorie calculation, and data storage.
 
 ## Features
@@ -97,17 +96,17 @@ Get user's prediction history (requires authentication - to be implemented).
 
 ## Integration Points
 
-### With Team Member 1 (ML Lead - Riya)
+### With ML Lead
 - `app/utils/food_detection.py` - Interface for YOLO model
 - Replace mock detection with actual YOLO inference
 - Update `load_yolo_model()` function with provided model path
 
-### With Team Member 2 (Data Engineer - Situ)
+### With Data Manipulation
 - `app/utils/calorie_calculator.py` - Nutrition database and portion estimation
 - Replace `NUTRITION_DB` with CSV-based database
 - Update `estimate_portion_from_bbox()` with refined logic
 
-### With Team Member 4 (Frontend - Shaivi)
+### With frontend
 - API endpoints ready for frontend integration
 - CORS enabled for cross-origin requests
 - JSON responses formatted for easy frontend consumption
