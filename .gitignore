@@ -50,7 +50,8 @@ logs/
 # Model files
 *.pt
 *.pth
-models/
+# Exclude ML model files but keep code models folder
+!backend/app/models/
 
 # Temporary files
 temp/
