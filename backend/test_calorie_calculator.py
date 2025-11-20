@@ -12,7 +12,7 @@ test_detections = [
         "bbox": [100, 100, 300, 200]
     },
     {
-        "class_name": "idli",
+        "class_name": "idly",
         "confidence": 0.92,
         "bbox": [320, 120, 380, 180]
     },
@@ -20,6 +20,11 @@ test_detections = [
         "class_name": "sambar",
         "confidence": 0.78,
         "bbox": [150, 220, 250, 300]
+    },
+    {
+        "class_name": "paneer briyani",
+        "confidence": 0.88,
+        "bbox": [200, 300, 400, 450]
     }
 ]
 
