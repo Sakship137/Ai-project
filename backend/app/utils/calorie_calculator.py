@@ -25,14 +25,17 @@ def load_nutrition_database(csv_path: str) -> Dict[str, Dict[str, float]]:
         return get_default_nutrition_db()
 
 def get_default_nutrition_db() -> Dict[str, Dict[str, float]]:
-    """Fallback nutrition database"""
+    """Fallback nutrition database for South Indian foods"""
     return {
-        "rice": {"calories": 130, "protein": 2.7, "carbs": 28, "fat": 0.3},
-        "paneer": {"calories": 265, "protein": 18, "carbs": 1.2, "fat": 20},
-        "dal": {"calories": 116, "protein": 9, "carbs": 20, "fat": 0.4},
-        "roti": {"calories": 297, "protein": 11, "carbs": 61, "fat": 3.7},
-        "chicken": {"calories": 165, "protein": 31, "carbs": 0, "fat": 3.6},
-        "vegetables": {"calories": 25, "protein": 1.5, "carbs": 5, "fat": 0.2}
+        "dosa": {"calories": 133, "protein": 4.5, "carbs": 18, "fat": 4.5},
+        "idli": {"calories": 58, "protein": 2.8, "carbs": 8.9, "fat": 0.39},
+        "vada": {"calories": 245, "protein": 8, "carbs": 25, "fat": 14},
+        "sambar": {"calories": 85, "protein": 4.2, "carbs": 12, "fat": 2.8},
+        "rasam": {"calories": 45, "protein": 2.1, "carbs": 8, "fat": 0.8},
+        "coconut_chutney": {"calories": 165, "protein": 2.5, "carbs": 6, "fat": 16},
+        "upma": {"calories": 76, "protein": 2.1, "carbs": 13, "fat": 1.8},
+        "uttapam": {"calories": 120, "protein": 4, "carbs": 16, "fat": 4},
+        "rice": {"calories": 130, "protein": 2.7, "carbs": 28, "fat": 0.3}
     }
 
 # Load nutrition database
@@ -48,12 +51,18 @@ def estimate_portion_from_bbox(bbox: List[int], food_class: str) -> float:
     # Basic portion estimation based on food type and pixel area
     
     portion_multipliers = {
-        "rice": 0.02,     
-        "paneer": 0.015,   
-        "dal": 0.018,      
-        "roti": 0.012,     
-        "chicken": 0.014,  
-        "vegetables": 0.016 
+        "dosa": 0.025,
+        "idli": 0.008,
+        "vada": 0.012,
+        "sambar": 0.020,
+        "rasam": 0.022,
+        "coconut_chutney": 0.015,
+        "upma": 0.018,
+        "uttapam": 0.020,
+        "rice": 0.020,
+        "appam": 0.015,
+        "puttu": 0.016,
+        "payasam": 0.018
     }
     
     multiplier = portion_multipliers.get(food_class, 0.015)
@@ -122,7 +131,7 @@ def get_nutrition_for_food(food_name: str) -> Dict[str, float]:
     Get nutrition information for a specific food item
     """
     food_key = food_name.lower().strip()
-    return NUTRITION_DB.get(food_key, NUTRITION_DB.get("vegetables", {"calories": 25, "protein": 1.5, "carbs": 5, "fat": 0.2}))
+    return NUTRITION_DB.get(food_key, NUTRITION_DB.get("rice", {"calories": 130, "protein": 2.7, "carbs": 28, "fat": 0.3}))
 
 def update_nutrition_database(new_data: Dict[str, Dict[str, float]]) -> None:
     """

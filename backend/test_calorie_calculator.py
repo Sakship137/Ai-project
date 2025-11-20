@@ -4,22 +4,22 @@ Test script for calorie calculator
 """
 from app.utils.calorie_calculator import calculate_calories, get_nutrition_for_food
 
-# Mock detection data for testing
+# Mock detection data for South Indian foods testing
 test_detections = [
     {
-        "class_name": "rice",
+        "class_name": "dosa",
         "confidence": 0.85,
-        "bbox": [100, 100, 200, 150]
+        "bbox": [100, 100, 300, 200]
     },
     {
-        "class_name": "paneer",
+        "class_name": "idli",
         "confidence": 0.92,
-        "bbox": [250, 120, 350, 180]
+        "bbox": [320, 120, 380, 180]
     },
     {
-        "class_name": "dal",
+        "class_name": "sambar",
         "confidence": 0.78,
-        "bbox": [150, 200, 220, 250]
+        "bbox": [150, 220, 250, 300]
     }
 ]
 
