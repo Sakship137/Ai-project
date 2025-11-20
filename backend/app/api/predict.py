@@ -5,7 +5,7 @@ import io
 import numpy as np
 from typing import List, Dict, Any
 from app.utils.food_detection import detect_food
-from app.utils.calorie_calculator import calculate_calories
+from app.utils.calorie_calculator import calculate_calories, get_nutrition_for_food
 from app.utils.image_processor import process_image
 from app.database.storage import save_prediction_result
 

@@ -2,15 +2,42 @@ import csv
 import os
 from typing import List, Dict, Any
 
-# Nutrition database - calories per 100g
-NUTRITION_DB = {
-    "rice": {"calories": 130, "protein": 2.7, "carbs": 28, "fat": 0.3},
-    "paneer": {"calories": 265, "protein": 18, "carbs": 1.2, "fat": 20},
-    "dal": {"calories": 116, "protein": 9, "carbs": 20, "fat": 0.4},
-    "roti": {"calories": 297, "protein": 11, "carbs": 61, "fat": 3.7},
-    "chicken": {"calories": 165, "protein": 31, "carbs": 0, "fat": 3.6},
-    "vegetables": {"calories": 25, "protein": 1.5, "carbs": 5, "fat": 0.2}
-}
+def load_nutrition_database(csv_path: str) -> Dict[str, Dict[str, float]]:
+    """
+    Load nutrition database from CSV file
+    """
+    nutrition_db = {}
+    try:
+        with open(csv_path, 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                food_name = row['food_name'].lower().strip()
+                nutrition_db[food_name] = {
+                    'calories': float(row['calories_per_100g']),
+                    'protein': float(row['protein_per_100g']),
+                    'carbs': float(row['carbs_per_100g']),
+                    'fat': float(row['fat_per_100g'])
+                }
+        print(f"Loaded {len(nutrition_db)} foods from nutrition database")
+        return nutrition_db
+    except (FileNotFoundError, KeyError, ValueError) as e:
+        print(f"Error loading nutrition database: {e}")
+        return get_default_nutrition_db()
+
+def get_default_nutrition_db() -> Dict[str, Dict[str, float]]:
+    """Fallback nutrition database"""
+    return {
+        "rice": {"calories": 130, "protein": 2.7, "carbs": 28, "fat": 0.3},
+        "paneer": {"calories": 265, "protein": 18, "carbs": 1.2, "fat": 20},
+        "dal": {"calories": 116, "protein": 9, "carbs": 20, "fat": 0.4},
+        "roti": {"calories": 297, "protein": 11, "carbs": 61, "fat": 3.7},
+        "chicken": {"calories": 165, "protein": 31, "carbs": 0, "fat": 3.6},
+        "vegetables": {"calories": 25, "protein": 1.5, "carbs": 5, "fat": 0.2}
+    }
+
+# Load nutrition database
+CSV_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'nutrition_db.csv')
+NUTRITION_DB = load_nutrition_database(CSV_PATH)
 
 def estimate_portion_from_bbox(bbox: List[int], food_class: str) -> float:
     """
@@ -56,7 +83,7 @@ def calculate_calories(detections: List[Dict[str, Any]]) -> Dict[str, Any]:
         portion_grams = estimate_portion_from_bbox(bbox, food_class)
         
         # Get nutrition info
-        nutrition = NUTRITION_DB.get(food_class, NUTRITION_DB["vegetables"])
+        nutrition = get_nutrition_for_food(food_class)
         
         # Calculate calories and macros for this portion
         calories = (nutrition["calories"] * portion_grams) / 100
@@ -92,24 +119,17 @@ def calculate_calories(detections: List[Dict[str, Any]]) -> Dict[str, Any]:
         "food_items": food_items
     }
 
-def load_nutrition_database(csv_path: str) -> Dict[str, Dict[str, float]]:
+def get_nutrition_for_food(food_name: str) -> Dict[str, float]:
     """
-    Load nutrition database from CSV file
-    To be used when Team Member 2 provides the complete nutrition database
+    Get nutrition information for a specific food item
     """
-    nutrition_db = {}
-    try:
-        with open(csv_path, 'r') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                nutrition_db[row['food_name']] = {
-                    'calories': float(row['calories_per_100g']),
-                    'protein': float(row['protein_per_100g']),
-                    'carbs': float(row['carbs_per_100g']),
-                    'fat': float(row['fat_per_100g'])
-                }
-    except FileNotFoundError:
-        print(f"Nutrition database file not found: {csv_path}")
-        return NUTRITION_DB
-    
-    return nutrition_db
+    food_key = food_name.lower().strip()
+    return NUTRITION_DB.get(food_key, NUTRITION_DB.get("vegetables", {"calories": 25, "protein": 1.5, "carbs": 5, "fat": 0.2}))
+
+def update_nutrition_database(new_data: Dict[str, Dict[str, float]]) -> None:
+    """
+    Update nutrition database with new food items
+    """
+    global NUTRITION_DB
+    NUTRITION_DB.update(new_data)
+    print(f"Updated nutrition database with {len(new_data)} new items")
