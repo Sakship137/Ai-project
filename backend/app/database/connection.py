@@ -12,8 +12,7 @@ async def get_database():
     return db.database
 
 async def init_db():
-    """Initialize database connection"""
-    # MongoDB connection string - can be configured via environment variables
+    #Initialization 
     MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
     DATABASE_NAME = os.getenv("DATABASE_NAME", "smart_diet_db")
     
@@ -27,10 +26,9 @@ async def init_db():
         
     except Exception as e:
         print(f"Failed to connect to MongoDB: {e}")
-        # For development, we can continue without database
         db.database = None
 
 async def close_db():
-    """Close database connection"""
+    #Close database connection
     if db.client:
         db.client.close()

@@ -40,22 +40,20 @@ CSV_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'nutrition_db.c
 NUTRITION_DB = load_nutrition_database(CSV_PATH)
 
 def estimate_portion_from_bbox(bbox: List[int], food_class: str) -> float:
-    """
-    Estimate portion size in grams from bounding box area
-    This connects with Team Member 2's portion estimation logic
-    """
+    
+   # Estimate portion size in grams 
     x1, y1, x2, y2 = bbox
     area_pixels = (x2 - x1) * (y2 - y1)
     
     # Basic portion estimation based on food type and pixel area
-    # These are rough estimates - Team Member 2 will refine this
+    
     portion_multipliers = {
-        "rice": 0.02,      # Rice tends to spread out
-        "paneer": 0.015,   # Denser food
-        "dal": 0.018,      # Liquid consistency
-        "roti": 0.012,     # Flat bread
-        "chicken": 0.014,  # Meat pieces
-        "vegetables": 0.016 # Mixed vegetables
+        "rice": 0.02,     
+        "paneer": 0.015,   
+        "dal": 0.018,      
+        "roti": 0.012,     
+        "chicken": 0.014,  
+        "vegetables": 0.016 
     }
     
     multiplier = portion_multipliers.get(food_class, 0.015)
@@ -65,9 +63,9 @@ def estimate_portion_from_bbox(bbox: List[int], food_class: str) -> float:
     return max(10, min(estimated_grams, 500))
 
 def calculate_calories(detections: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    Calculate total calories and macros from detected foods
-    """
+
+   # Calculating total calories and macros from detected foods
+    
     total_calories = 0
     total_protein = 0
     total_carbs = 0

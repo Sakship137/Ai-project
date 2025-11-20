@@ -4,9 +4,9 @@ from app.database.connection import get_database
 import uuid
 
 async def save_prediction_result(prediction_data: Dict[str, Any]) -> str:
-    """
-    Save prediction result to database
-    """
+    
+   # Save prediction result to database
+
     try:
         db = await get_database()
         if db is None:
@@ -30,9 +30,9 @@ async def save_prediction_result(prediction_data: Dict[str, Any]) -> str:
         return "error"
 
 async def get_user_history(user_id: str, limit: int = 10) -> List[Dict[str, Any]]:
-    """
-    Get user's prediction history
-    """
+
+   # Get user's prediction history
+
     try:
         db = await get_database()
         if db is None:
@@ -58,9 +58,9 @@ async def get_user_history(user_id: str, limit: int = 10) -> List[Dict[str, Any]
         return []
 
 async def get_prediction_details(prediction_id: str) -> Optional[Dict[str, Any]]:
-    """
-    Get detailed prediction data by ID
-    """
+    
+    #Get detailed prediction data by ID
+    
     try:
         db = await get_database()
         if db is None:
