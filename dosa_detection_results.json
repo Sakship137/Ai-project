@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "total_calories": 178.8,
+  "total_macros": {
+    "protein": 4.9,
+    "carbs": 30.6,
+    "fat": 4.2
+  },
+  "detected_foods": [
+    {
+      "food_name": "koozh",
+      "portion_grams": 235.2,
+      "calories": 178.8,
+      "protein": 4.9,
+      "carbs": 30.6,
+      "fat": 4.2,
+      "confidence": 0.55,
+      "bbox": [
+        3,
+        21,
+        520,
+        640
+      ]
+    }
+  ],
+  "image_info": {
+    "width": 1280,
+    "height": 720,
+    "format": "JPEG"
+  },
+  "detection_count": 1
+}

@@ -1,0 +1,43 @@
+0: appalam
+1: appam
+2: banana
+3: boiled egg
+4: butter milk
+5: channa masala
+6: chicken 65
+7: dosa
+8: gravy
+9: idiyappam
+10: idly
+11: kaara chutney
+12: kesari
+13: koozh
+14: kuruma
+15: masiyal
+16: medu vadai
+17: moor kolambu
+18: mushroom briyani
+19: paal kolukattai
+20: paneer briyani
+21: paniyaram
+22: parupu vadai
+23: payasam
+24: pickle
+25: pidi kolukattai
+26: podi
+27: pongal
+28: poori
+29: poorna kolukattai
+30: pulisatham
+31: puthina chutney
+32: raita
+33: rasam
+34: salad
+35: sambar
+36: satham
+37: soup
+38: tea
+39: thayir
+40: thengai chutney
+41: thovaiyal
+42: uthapam

@@ -1,0 +1,25 @@
+INFO:     Will watch for changes in these directories: ['/home/fnp/Downloads/Ai-project-main/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [9200] using StatReload
+INFO:     Started server process [9202]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Loaded 43 foods from nutrition database
+🚀 Smart Diet Recommender API Started
+📊 Food Detection Model: Ready
+🥗 Nutrition Database: Loaded
+INFO:     127.0.0.1:38752 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35236 - "POST /api/predict HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'app/api/predict.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [9202]
+INFO:     Started server process [9944]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Loaded 43 foods from nutrition database
+🚀 Smart Diet Recommender API Started
+📊 Food Detection Model: Ready
+🥗 Nutrition Database: Loaded
+INFO:     127.0.0.1:46290 - "POST /api/predict HTTP/1.1" 200 OK
